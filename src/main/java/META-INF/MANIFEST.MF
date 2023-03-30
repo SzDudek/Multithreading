@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: lab05.lab05_pop.Main
-
