@@ -10,21 +10,21 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lab05.lab05_pop.Controller">
     <children>
         <Button fx:id="startButton" layoutX="620.0" layoutY="388.0" mnemonicParsing="false" text="Start" />
-        <Button fx:id="endButton" layoutX="614.0" layoutY="439.0" mnemonicParsing="false" text="Koniec" />
-      <TextField fx:id="wartKolumn" layoutX="52.0" layoutY="414.0" prefHeight="25.0" prefWidth="41.0" promptText="9" />
-      <TextField fx:id="wartWierszy" layoutX="142.0" layoutY="414.0" prefHeight="25.0" prefWidth="41.0" promptText="10" />
-      <Label fx:id="ileKolumn" alignment="CENTER" layoutX="39.0" layoutY="383.0" text="Ilosc kolumn" textOverrun="CLIP" />
-      <Label fx:id="ileWierszy" alignment="CENTER" layoutX="130.0" layoutY="383.0" text="Ilosc wierszy" />
-      <Label fx:id="ileGraczy" layoutX="224.0" layoutY="406.0" text="Ilosc graczy" />
-      <Label fx:id="ilePilek" layoutX="313.0" layoutY="406.0" text="Ilosc pilek" />
-      <Spinner fx:id="graczeSpinner" editable="true" layoutX="229.0" layoutY="433.0" prefHeight="25.0" prefWidth="53.0" />
-      <Spinner fx:id="pilkiSpinner" editable="true" layoutX="313.0" layoutY="433.0" prefHeight="25.0" prefWidth="53.0" />
-      <Button fx:id="kolumnyConfirm" layoutX="38.0" layoutY="445.0" mnemonicParsing="false" onAction="#confirmKolumny" prefHeight="25.0" prefWidth="69.0" text="Potwierdz" />
-      <Button fx:id="wierszeConfirm" layoutX="127.0" layoutY="445.0" mnemonicParsing="false" onAction="#confirmWiersze" text="Potwierdz" />
-      <Label fx:id="vGraczy" layoutX="389.0" layoutY="406.0" text="Szybkosc Graczy" />
-      <Label fx:id="vPilek" layoutX="493.0" layoutY="406.0" text="Szybkosc Pilek" />
-      <ChoiceBox fx:id="vGraczyChoice" layoutX="398.0" layoutY="433.0" prefHeight="25.0" prefWidth="69.0" />
-      <ChoiceBox fx:id="vPilekChoice" layoutX="497.0" layoutY="433.0" prefHeight="25.0" prefWidth="69.0" />
-      <Label fx:id="powiadomienie" layoutX="326.0" layoutY="470.0" />
+        <Button fx:id="endButton" layoutX="620.0" layoutY="433.0" mnemonicParsing="false" text="Stop" />
+      <TextField fx:id="columnsVal" layoutX="52.0" layoutY="414.0" prefHeight="25.0" prefWidth="41.0" promptText="9" />
+      <TextField fx:id="rowVal" layoutX="142.0" layoutY="414.0" prefHeight="25.0" prefWidth="41.0" promptText="10" />
+      <Label fx:id="columnsCount" alignment="CENTER" layoutX="49.0" layoutY="383.0" text="Columns" textOverrun="CLIP" />
+      <Label fx:id="rowsCount" alignment="CENTER" layoutX="143.0" layoutY="383.0" text="Rows" />
+      <Label fx:id="playerCount" layoutX="237.0" layoutY="406.0" text="Players" />
+      <Label fx:id="ballsCount" layoutX="328.0" layoutY="406.0" text="Balls" />
+      <Spinner fx:id="playersSpinner" editable="true" layoutX="229.0" layoutY="433.0" prefHeight="25.0" prefWidth="53.0" />
+      <Spinner fx:id="ballsSpinner" editable="true" layoutX="313.0" layoutY="433.0" prefHeight="25.0" prefWidth="53.0" />
+      <Button fx:id="columnsConfirm" layoutX="38.0" layoutY="445.0" mnemonicParsing="false" onAction="#confirmColumns" prefHeight="25.0" prefWidth="69.0" text="Confirm" />
+      <Button fx:id="rowsConfirm" layoutX="133.0" layoutY="445.0" mnemonicParsing="false" onAction="#confirmRows" text="Confirm" />
+      <Label fx:id="vPlayers" layoutX="389.0" layoutY="406.0" text="Players' velocity" />
+      <Label fx:id="vBalls" layoutX="493.0" layoutY="406.0" text="Balls' velocity" />
+      <ChoiceBox fx:id="vPlayersChoice" layoutX="398.0" layoutY="433.0" prefHeight="25.0" prefWidth="69.0" />
+      <ChoiceBox fx:id="vBallsChoice" layoutX="497.0" layoutY="433.0" prefHeight="25.0" prefWidth="69.0" />
+      <Label fx:id="notification" layoutX="326.0" layoutY="470.0" />
     </children>
 </AnchorPane>

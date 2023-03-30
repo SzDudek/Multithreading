@@ -12,11 +12,11 @@ public class BallGenerator extends MyThread {
                     break;
                 }
             }
-            int poleX = (Field.columns)/2;
+            int squareX = (Field.columns)/2;
             System.out.println("Generating the ball...");
-            Ball nowa = new Ball(poleX,(int) randomSquare,sleepTime, field, this);
-            field.threads.add(nowa);
-            nowa.start();
+            Ball newBall = new Ball(squareX,(int) randomSquare,sleepTime, field, this);
+            field.threads.add(newBall);
+            newBall.start();
         }
     }
     public void run(){

@@ -6,7 +6,6 @@ public class Player extends MyThread {
     int teamId;
     Field field;
     public synchronized void move(){
-        System.out.println("Move");
         Ball targetedBall = findTarget();
         if(targetedBall!=null && targetedBall.yCord>this.yCord && field.fieldCondition.get(yCord+1).get(xCord)!=1){
             field.fieldCondition.get(yCord).set(xCord,0);
@@ -41,7 +40,7 @@ public class Player extends MyThread {
                 cDist=(int) Math.sqrt(Math.pow(this.xCord-pilka.xCord,2)+Math.pow(this.yCord-pilka.yCord,2));
                 if(cDist<minDist && field.targetsTeam1.get(pilka)){
                     closest=pilka;
-                    minDist = (double) cDist;
+                    minDist = cDist;
                 }
             }
             if(closest!=null){
@@ -52,16 +51,14 @@ public class Player extends MyThread {
             for(Ball ball : field.targetsTeam2.keySet()){
                 cDist=(int) Math.sqrt(Math.pow(this.xCord-ball.xCord,2)+Math.pow(this.yCord-ball.yCord,2));
                 if(cDist<minDist && field.targetsTeam2.get(ball)){
-                    closest=ball;
-                    minDist = (double) cDist;
+                    closest = ball;
+                    minDist = cDist;
                 }
             }
             if(closest!=null){
                 field.targetsTeam2.put(closest,false);
             }
         }
-        System.out.println(field.targetsTeam1);
-        System.out.println(field.targetsTeam2);
        return closest;
     }
     @Override

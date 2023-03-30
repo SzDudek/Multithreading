@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.lang.Thread.sleep;
 
 public class Field {
     static int columns;
@@ -17,7 +16,7 @@ public class Field {
     static int ballCount;
     ArrayList<Integer> leftSideCondition;
     ArrayList<Integer> rightSideCondition;
-    ArrayList<ArrayList<Integer>> fieldCondition; // 0-> puste 1-> pilka  2->gracz
+    ArrayList<ArrayList<Integer>> fieldCondition;
     ArrayList<Boolean> ballRow;
     ArrayList<ArrayList<Label>> labels;
     ArrayList<MyThread> threads;
@@ -53,68 +52,52 @@ public class Field {
 
     }
     public synchronized void setBall(int xCord, int yCord){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                labels.get(yCord).get(xCord+1).setText("#");
-            }
-        });
+        Platform.runLater(() -> labels.get(yCord).get(xCord+1).setText("#"));
     }
     public synchronized void setPlayer(int xCord, int yCord){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                labels.get(yCord).get(xCord+1).setText("X");
-            }
-        });
+        Platform.runLater(() -> labels.get(yCord).get(xCord+1).setText("X"));
     }
     public synchronized void clearSquare(int xCord, int yCord){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                if(xCord==(columns)/2){
-                    labels.get(yCord).get(xCord+1).setText("_");
-                }
-                else{
-                    labels.get(yCord).get(xCord+1).setText(".");
-                }
+        Platform.runLater(() -> {
+            if(xCord==(columns)/2){
+                labels.get(yCord).get(xCord+1).setText("_");
+            }
+            else{
+                labels.get(yCord).get(xCord+1).setText(".");
             }
         });
     }
     public synchronized void updateCondition(int xCord, int yCord){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                if(xCord==0){
-                    if(rightSideCondition.get(yCord)>9){
-                        labels.get(yCord).get(0).setText(String.valueOf(rightSideCondition.get(yCord)));
-                    }
-                    else {
-                        labels.get(yCord).get(0).setText(String.valueOf("0"+ rightSideCondition.get(yCord)));
-                    }
+        Platform.runLater(() -> {
+            if(xCord==0){
+                if(rightSideCondition.get(yCord)>9){
+                    labels.get(yCord).get(0).setText(String.valueOf(rightSideCondition.get(yCord)));
                 }
                 else {
-                    if(leftSideCondition.get(yCord)>9){
-                        labels.get(yCord).get(columns +1).setText(String.valueOf(leftSideCondition.get(yCord)));
-                    }
-                    else {
-                        labels.get(yCord).get(columns +1).setText(String.valueOf("0"+ leftSideCondition.get(yCord)));
-                    }
+                    labels.get(yCord).get(0).setText(String.valueOf("0"+ rightSideCondition.get(yCord)));
+                }
+            }
+            else {
+                if(leftSideCondition.get(yCord)>9){
+                    labels.get(yCord).get(columns +1).setText(String.valueOf(leftSideCondition.get(yCord)));
+                }
+                else {
+                    labels.get(yCord).get(columns +1).setText(String.valueOf("0"+ leftSideCondition.get(yCord)));
                 }
             }
         });
     }
-    public Field(int columns, int rows, int szybkoscGraczy, int szybkoscPilek, int playerCount, int ballCount){
+    public Field(int columns, int rows, int playersVelocity, int ballsVelocity, int playerCount, int ballCount){
         Field.columns = columns;
         Field.rows = rows;
         Field.playerCount = playerCount;
         Field.ballCount = ballCount;
-        switch (szybkoscGraczy) {
+        switch (playersVelocity) {
             case 1 -> sleepPlayers = 500;
             case 2 -> sleepPlayers = 250;
             case 3 -> sleepPlayers = 100;
         }
-        switch (szybkoscPilek) {
+        switch (ballsVelocity) {
             case 1 -> sleepBalls = 500;
             case 2 -> sleepBalls = 250;
             case 3 -> sleepBalls = 100;
@@ -127,7 +110,6 @@ public class Field {
         fieldCondition = new ArrayList<>();
         ballRow = new ArrayList<>();
         labels = new ArrayList<>();
-        //ZAPELNIANIE MAP
         for(int i = 0; i< rows; i++){
             leftSideCondition.add(0);
             rightSideCondition.add(0);
@@ -136,11 +118,9 @@ public class Field {
         }
         for(int i = 0; i< rows; i++){
             fieldCondition.add(new ArrayList<>());
-            //stanPlanszy.get(i).add(-1);
             for (int j = 0; j< columns; j++){
                 fieldCondition.get(i).add(0);
             }
-            //stanPlanszy.get(i).add(-1);
         }
     }
 }

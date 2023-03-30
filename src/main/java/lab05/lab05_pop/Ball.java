@@ -7,7 +7,7 @@ public class Ball extends MyThread {
     Field field;
     BallGenerator generator;
     private synchronized void move() throws InterruptedException {
-        if((moveDirection==1 && xCord== field.columns -1)||(moveDirection==-1 && xCord==0)){
+        if((moveDirection==1 && xCord== Field.columns -1)||(moveDirection==-1 && xCord==0)){
             field.clearSquare(xCord,yCord);
             field.fieldCondition.get(yCord).set(xCord,0);
             field.ballRow.set(yCord,false);
@@ -28,13 +28,9 @@ public class Ball extends MyThread {
             field.threads.remove(this);
         }
         else if(field.fieldCondition.get(yCord).get(xCord+moveDirection)==1){
-            switch (moveDirection){
-                case -1:
-                    moveDirection=1;
-                    break;
-                case 1:
-                    moveDirection=-1;
-                    break;
+            switch (moveDirection) {
+                case -1 -> moveDirection = 1;
+                case 1 -> moveDirection = -1;
             }
             field.fieldCondition.get(yCord).set(xCord,0);
             field.clearSquare(xCord,yCord);
